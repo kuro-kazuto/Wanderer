@@ -40,7 +40,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="bottom"
                                     android:layout_margin="25dp"
-                                    android:background="@color/cardview_light_background"
+                                    android:background="@drawable/rounded"
                                     android:text="Scan WiFi"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +73,7 @@
                                                     android:gravity="center"
                                                     android:text="Wifi 1"
                                                     android:textAlignment="center"
-                                                    android:textColor="@android:color/black"
+                                                    android:textStyle="bold"
                                                     android:textSize="18sp"
                                                     app:layout_constraintBottom_toTopOf="@+id/txtWifi1Y"
                                                     app:layout_constraintEnd_toEndOf="@+id/txtWifi1Y"
@@ -98,7 +98,7 @@
                                                     android:id="@+id/txtWifi1R"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginEnd="64dp"
+                                                    android:layout_marginEnd="32dp"
                                                     android:hint="R"
                                                     android:inputType="numberDecimal"
                                                     android:textAlignment="center"
@@ -149,7 +149,7 @@
                                                     android:id="@+id/txtWifi2R"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginEnd="60dp"
+                                                    android:layout_marginEnd="32dp"
                                                     android:hint="R"
                                                     android:inputType="numberDecimal"
                                                     android:textAlignment="center"
@@ -165,7 +165,7 @@
                                                     android:gravity="center"
                                                     android:text="Wifi 2"
                                                     android:textAlignment="center"
-                                                    android:textColor="@android:color/black"
+                                                    android:textStyle="bold"
                                                     android:textSize="18sp"
                                                     app:layout_constraintBottom_toTopOf="@+id/txtWifi2Y"
                                                     app:layout_constraintEnd_toEndOf="@+id/txtWifi2Y"
@@ -227,7 +227,8 @@
                                                     android:id="@+id/txtWifi3R"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginEnd="60dp"
+                                                    android:layout_marginStart="16dp"
+                                                    android:layout_marginEnd="32dp"
                                                     android:hint="R"
                                                     android:inputType="numberDecimal"
                                                     android:textAlignment="center"
@@ -243,7 +244,7 @@
                                                     android:gravity="center"
                                                     android:text="Wifi 3"
                                                     android:textAlignment="center"
-                                                    android:textColor="@android:color/black"
+                                                    android:textStyle="bold"
                                                     android:textSize="18sp"
                                                     app:layout_constraintBottom_toTopOf="@+id/txtWifi3Y"
                                                     app:layout_constraintEnd_toEndOf="@+id/txtWifi3Y"
@@ -268,7 +269,6 @@
                                                     android:id="@+id/txtWifi3Y"
                                                     android:layout_width="0dp"
                                                     android:layout_height="wrap_content"
-                                                    android:layout_marginEnd="16dp"
                                                     android:hint="Y"
                                                     android:inputType="numberDecimal"
                                                     android:textAlignment="center"
@@ -285,23 +285,28 @@
                                     android:id="@+id/btnNLS"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="48dp"
-                                    android:background="@color/purple_700"
-                                    android:text="View NLS"
                                     android:layout_margin="25dp"
-                                    android:textColor="@android:color/white"
+                                    android:layout_marginTop="24dp"
+                                    android:background="@drawable/rounded"
+                                    android:text="View NLS"
                                     app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="1.0"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/btnAddPt" />
+                                    app:layout_constraintTop_toBottomOf="@+id/scanBtn"
+                                    />
 
                                 <com.jjoe64.graphview.GraphView
+                                    android:background="@drawable/map2"
                                     android:id="@+id/scatterPlot"
                                     android:layout_width="match_parent"
-                                    android:layout_height="280dp"
+                                    android:layout_height="400dp"
+                                    android:layout_marginTop="30dp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/cardView3" />
+
+
 
                                 <Button
                                     android:id="@+id/btnAddPt"
@@ -311,9 +316,23 @@
                                     android:layout_alignParentRight="true"
                                     android:text="View Result"
                                     android:layout_margin="25dp"
+                                    android:background="@drawable/rounded"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/scanBtn" />
+                                    app:layout_constraintTop_toBottomOf="@+id/btnNLS" />
+
+                                <Button
+                                    android:id="@+id/btnChangeBg"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/scatterPlot"
+                                    android:layout_alignParentRight="true"
+                                    android:text="Change Map"
+                                    android:layout_margin="25dp"
+                                    android:background="@drawable/rounded"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/btnAddPt" />
 
                                 <TextView
                                     android:id="@+id/tvmx"
@@ -343,7 +362,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="30dp"
                                     android:layout_marginTop="10dp"
-                                    android:text="X = blabla"
+                                    android:text="X = 0.00 m"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/scatterPlot" />
@@ -353,16 +372,24 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="30dp"
-                                    android:text="Y = blabla"
+                                    android:text="Y = 0.00 m"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="1.0"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/tv_resX" />
 
+                                <LinearLayout
+                                    android:id="@+id/ganjel"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="30dp"
+                                    app:layout_constraintTop_toBottomOf="@+id/btnChangeBg"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    android:orientation="horizontal">
 
+                                </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
         </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

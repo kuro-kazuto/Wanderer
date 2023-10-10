@@ -2,13 +2,6 @@ package com.untirta.wanderer.trilateration;
 
 import org.apache.commons.math3.linear.*;
 
-/**
- *
- * For testing only. A linear approach to solve the Trilateration problem.
- * see http://inside.mines.edu/~whereman/talks/TurgutOzal-11-Trilateration.pdf
- *
- * @author scott
- */
 public class LinearLeastSquaresSolver {
 
     protected final TrilaterationFunction function;

@@ -7,13 +7,6 @@ import org.apache.commons.math3.fitting.leastsquares.LeastSquaresProblem;
 import org.apache.commons.math3.linear.ArrayRealVector;
 import org.apache.commons.math3.linear.DiagonalMatrix;
 
-/**
- * Solves a Trilateration problem with an instance of a
- * {@link LeastSquaresOptimizer}
- *
- * @author scott
- *
- */
 public class NonLinearLeastSquaresSolver {
 
 	protected final TrilaterationFunction function;

@@ -7,13 +7,6 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealVector;
 import org.apache.commons.math3.util.Pair;
 
-/**
- * Models the Trilateration problem. This is a formulation for a nonlinear least
- * squares optimizer.
- *
- * @author scott
- *
- */
 public class TrilaterationFunction implements MultivariateJacobianFunction {
 
 	protected static final double epsilon = 1E-7;

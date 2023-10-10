@@ -1,6 +1,7 @@
 package com.untirta.wanderer;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +40,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     WifiManager wifiManager;
-    Button btnScan, btnNLS, btnTri;
+    Button btnScan, btnNLS, btnChangeBg;
     TextView txtWifiName1,
             txtWifiName2,
             txtWifiName3,
@@ -72,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<com.untirta.wanderer.XYValue> xyValueArray;
 
 
-    //double xt, yt, va, vb, xa, xb, xc, ya, yb, yc, xapow, yapow, xbpow, ybpow, xcpow, ycpow,d1,d2,d3, d1pow, d2pow, d3pow;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,20 +81,21 @@ public class MainActivity extends AppCompatActivity {
         wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         ListView lv = findViewById(R.id.listview);
         btnNLS = findViewById(R.id.btnNLS);
+        btnChangeBg = findViewById(R.id.btnChangeBg);
 
 
         btnAddPt = (Button) findViewById(R.id.btnAddPt);
         // mX = (EditText) findViewById(R.id.numX);
         //mY = (EditText) findViewById(R.id.numY);
 
-        mX = (TextView) findViewById(R.id.tvmx);
-        mY = (TextView) findViewById(R.id.tvmy);
+        mX = findViewById(R.id.tvmx);
+        mY = findViewById(R.id.tvmy);
 
-        tv_resX = (TextView) findViewById(R.id.tv_resX);
-        tv_resY = (TextView) findViewById(R.id.tv_resY);
+        tv_resX = findViewById(R.id.tv_resX);
+        tv_resY = findViewById(R.id.tv_resY);
 
 
-        mScatterPlot = (GraphView) findViewById(R.id.scatterPlot);
+        mScatterPlot = findViewById(R.id.scatterPlot);
         xyValueArray = new ArrayList<>();
 
 
@@ -116,6 +117,36 @@ public class MainActivity extends AppCompatActivity {
 
         mDistances = new double[3];
         mPositions = new double[3][2];
+
+
+        GraphView scatterPlot = (GraphView) findViewById(R.id.scatterPlot);
+        for (View touchable : scatterPlot.getTouchables())
+        {
+            touchable.setEnabled(false);
+        }
+
+        btnChangeBg.setOnClickListener(view ->{
+            Dialog dialog = new Dialog(MainActivity.this);
+
+            //Memasang Title / Judul pada Custom Dialog
+            dialog.setTitle("Change Map");
+
+            //Memasang Desain Layout untuk Custom Dialog
+            dialog.setContentView(R.layout.dialog);
+
+            Button Outdoor = dialog.findViewById(R.id.OutdoorMap);
+            Button Indoor = dialog.findViewById(R.id.IndoorMap);
+            Outdoor.setOnClickListener(v -> {
+                dialog.dismiss();
+                scatterPlot.setBackgroundResource(R.drawable.gradient);
+            });
+            Indoor.setOnClickListener(v -> {
+                dialog.dismiss();
+                scatterPlot.setBackgroundResource(R.drawable.map2);
+            });
+
+            dialog.show();
+        });
 
         //btnTri =findViewById(R.id.btnTriliteration);
         btnScan = findViewById(R.id.scanBtn);
@@ -154,23 +185,137 @@ public class MainActivity extends AppCompatActivity {
                         txtWifiName2.setText(nAP2);
                         txtWifiName3.setText(nAP3);
 
-                        //Nilai Hanya untuk uji coba :
-                        String x1 = "2.85";
-                        String x2 = "3.22";
-                        String x3 = "3.56";
+/*                        //Nilai Hanya untuk uji coba :
+                        String x1 = "1.00";
+                        String x2 = "3.00";
+                        String x3 = "3.00";
 
-                        String y1 = "2.65";
-                        String y2 = "1.58";
-                        String y3 = "2.11";
+                        String y1 = "1.00";
+                        String y2 = "3.00";
+                        String y3 = "1.00";
+*/
+                        switch (nAP1) {
+                            case "AP_1": {
+                                String x1 = "2.00";
+                                String y1 = "8.00";
+                                txtWifi1X.setText(x1);
+                                txtWifi1Y.setText(y1);
+                                break;
+                            }
+                            case "AP_2": {
+                                String x1 = "2.00";
+                                String y1 = "2.00";
+                                txtWifi1X.setText(x1);
+                                txtWifi1Y.setText(y1);
+                                break;
+                            }
+                            case "AP_3": {
+                                String x1 = "8.00";
+                                String y1 = "2.00";
+                                txtWifi1X.setText(x1);
+                                txtWifi1Y.setText(y1);
+                                break;
+                            }
+                            case "AP_4": {
+                                String x1 = "8.00";
+                                String y1 = "8.00";
+                                txtWifi1X.setText(x1);
+                                txtWifi1Y.setText(y1);
+                                break;
+                            }
+                            case "AP_5": {
+                                String x1 = "5.00";
+                                String y1 = "5.00";
+                                txtWifi1X.setText(x1);
+                                txtWifi1Y.setText(y1);
+                                break;
+                            }
+                            default:
+                                Toast.makeText(MainActivity.this, "Null", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
 
-                        txtWifi1X.setText(x1);
-                        txtWifi2X.setText(x2);
-                        txtWifi3X.setText(x3);
+                        switch (nAP2) {
+                            case "AP_1": {
+                                String x2 = "2.00";
+                                String y2 = "8.00";
+                                txtWifi2X.setText(x2);
+                                txtWifi2Y.setText(y2);
+                                break;
+                            }
+                            case "AP_2": {
+                                String x2 = "2.00";
+                                String y2 = "2.00";
+                                txtWifi2X.setText(x2);
+                                txtWifi2Y.setText(y2);
+                                break;
+                            }
+                            case "AP_3": {
+                                String x2 = "8.00";
+                                String y2 = "2.00";
+                                txtWifi2X.setText(x2);
+                                txtWifi2Y.setText(y2);
+                                break;
+                            }
+                            case "AP_4": {
+                                String x2 = "8.00";
+                                String y2 = "8.00";
+                                txtWifi2X.setText(x2);
+                                txtWifi2Y.setText(y2);
+                                break;
+                            }
+                            case "AP_5": {
+                                String x2 = "5.00";
+                                String y2 = "5.00";
+                                txtWifi2X.setText(x2);
+                                txtWifi2Y.setText(y2);
+                                break;
+                            }
+                            default:
+                                Toast.makeText(MainActivity.this, "Null", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
 
-                        txtWifi1Y.setText(y1);
-                        txtWifi2Y.setText(y2);
-                        txtWifi3Y.setText(y3);
-
+                        switch (nAP3) {
+                            case "AP_1": {
+                                String x3 = "2.00";
+                                String y3 = "8.00";
+                                txtWifi3X.setText(x3);
+                                txtWifi3Y.setText(y3);
+                                break;
+                            }
+                            case "AP_2": {
+                                String x3 = "2.00";
+                                String y3 = "2.00";
+                                txtWifi3X.setText(x3);
+                                txtWifi3Y.setText(y3);
+                                break;
+                            }
+                            case "AP_3": {
+                                String x3 = "8.00";
+                                String y3 = "2.00";
+                                txtWifi3X.setText(x3);
+                                txtWifi3Y.setText(y3);
+                                break;
+                            }
+                            case "AP_4": {
+                                String x3 = "8.00";
+                                String y3 = "8.00";
+                                txtWifi3X.setText(x3);
+                                txtWifi3Y.setText(y3);
+                                break;
+                            }
+                            case "AP_5": {
+                                String x3 = "5.00";
+                                String y3 = "5.00";
+                                txtWifi3X.setText(x3);
+                                txtWifi3Y.setText(y3);
+                                break;
+                            }
+                            default:
+                                Toast.makeText(MainActivity.this, "Null", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
 
                     }
                 }
@@ -239,53 +384,6 @@ public class MainActivity extends AppCompatActivity {
         return Math.pow(10.0, exp);
     }
 
-    /*private void triliteration() {
-        xa = Double.parseDouble(txtWifi1X.getText().toString());
-        ya = Double.parseDouble(txtWifi1Y.getText().toString());
-        xb = Double.parseDouble(txtWifi2X.getText().toString());
-        yb = Double.parseDouble(txtWifi2Y.getText().toString());
-        xc = Double.parseDouble(txtWifi3X.getText().toString());
-        yc = Double.parseDouble(txtWifi3Y.getText().toString());
-        xapow = Math.pow(xa, 2);
-        yapow = Math.pow(ya, 2);
-        xbpow = Math.pow(xb, 2);
-        ybpow = Math.pow(yb, 2);
-        xcpow = Math.pow(xc, 2);
-        ycpow = Math.pow(yc, 2);
-        d1 = Double.parseDouble(txtWifi1R.getText().toString());
-        d2 = Double.parseDouble(txtWifi2R.getText().toString());
-        d3 = Double.parseDouble(txtWifi3R.getText().toString());
-        d1pow = Math.pow(d1, 2);
-        d2pow = Math.pow(d2, 2);
-        d3pow = Math.pow(d3, 2);
-
-        //Triliteration Algorithm
-        Double A = 2*xb - 2*xa;
-        Double B = 2*yb - 2*ya;
-        Double C = d1pow - d2pow - xapow + xbpow - yapow + ybpow;
-        Double D = 2*xc - 2*xb;
-        Double E = 2*yc - 2*yb;
-        Double F = d2pow - d3pow - xbpow + xcpow - ybpow + ycpow;
-        Double xt = ((C*E - F*B) / (E*A - B*D)); //per 10 in meter
-        Double yt = ((C*D - A*F) / (B*D - A*E)); //per 10 in meter
-
-        DecimalFormat df = new DecimalFormat("#.##");
-
-        // Use the Builder class for convenient dialog construction
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Triliteration")
-                .setMessage("X: "+ df.format(xt)+"m  Y: "+df.format(yt)+"m");
-
-        builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-        dialog.setCanceledOnTouchOutside(false);
-
-    }
-
-     */
-
     private void nonlinearLSQ() {
         if (    txtWifi1X.getText().toString().trim().isEmpty() ||
                 txtWifi1Y.getText().toString().trim().isEmpty() ||
@@ -326,18 +424,7 @@ public class MainActivity extends AppCompatActivity {
             DecimalFormat df = new DecimalFormat("#.##");
 
 
-/*
-            // Use the Builder class for convenient dialog construction
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setTitle("Non-Linear LSQ")
-                    .setMessage("X: "+ df.format(centroid[0])+"m  Y: "+df.format(centroid[1])+"m");
 
-            builder.setPositiveButton("OK", (dialog, which) -> dialog.dismiss());
-            AlertDialog dialog = builder.create();
-            dialog.show();
-            dialog.setCanceledOnTouchOutside(false);
-
- */
 
             String xdf = df.format(centroid[0]);
             String ydf = df.format(centroid[1]);
@@ -403,25 +490,25 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //set some properties
-        xySeries.setShape(PointsGraphSeries.Shape.RECTANGLE);
+        //xySeries.setShape(PointsGraphSeries.Shape.TRIANGLE);
         xySeries.setColor(Color.BLUE);
         xySeries.setSize(20f);
 
         //set Scrollable and Scaleable
-        mScatterPlot.getViewport().setScalable(true);
-        mScatterPlot.getViewport().setScalableY(true);
-        mScatterPlot.getViewport().setScrollable(true);
-        mScatterPlot.getViewport().setScrollableY(true);
+        mScatterPlot.getViewport().setScalable(false);
+        mScatterPlot.getViewport().setScalableY(false);
+        mScatterPlot.getViewport().setScrollable(false);
+        mScatterPlot.getViewport().setScrollableY(false);
 
         //set manual x bounds
         mScatterPlot.getViewport().setYAxisBoundsManual(true);
-        mScatterPlot.getViewport().setMaxY(150);
-        mScatterPlot.getViewport().setMinY(-150);
+        mScatterPlot.getViewport().setMaxY(10);
+        mScatterPlot.getViewport().setMinY(0);
 
         //set manual y bounds
         mScatterPlot.getViewport().setXAxisBoundsManual(true);
-        mScatterPlot.getViewport().setMaxX(150);
-        mScatterPlot.getViewport().setMinX(-150);
+        mScatterPlot.getViewport().setMaxX(10);
+        mScatterPlot.getViewport().setMinX(0);
 
         mScatterPlot.addSeries(xySeries);
     }
