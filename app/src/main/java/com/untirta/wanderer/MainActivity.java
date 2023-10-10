@@ -162,9 +162,9 @@ public class MainActivity extends AppCompatActivity {
 
                     if (alStrength.size() < 3) {
                         Toast.makeText(MainActivity.this, "Signal Wi-Fi < 3", Toast.LENGTH_SHORT).show();
+                    }
 
-                    } else {
-
+                    else {
                         String da = lv.getItemAtPosition(0).toString();
                         String db = lv.getItemAtPosition(1).toString();
                         String dc = lv.getItemAtPosition(2).toString();
@@ -185,49 +185,62 @@ public class MainActivity extends AppCompatActivity {
                         txtWifiName2.setText(nAP2);
                         txtWifiName3.setText(nAP3);
 
-/*                        //Nilai Hanya untuk uji coba :
-                        String x1 = "1.00";
-                        String x2 = "3.00";
-                        String x3 = "3.00";
+/*                      //TEMPLETE 1 (langsung tempel dinding) :
+                        String x_AP1 = ;
+                        String y_AP1 = ;
 
-                        String y1 = "1.00";
-                        String y2 = "3.00";
-                        String y3 = "1.00";
+                        String x_AP2 = ;
+                        String y_AP2 = ;
+
+                        String x_AP3 = ;
+                        String y_AP3 = ;
+
+                        String x_AP4 = ;
+                        String y_AP4 = ;
+
+                        String x_AP4 = ;
+                        String y_AP5 = ;
 */
+                        //POSISI UTAMA
+                        String x_AP1 = "2.00";
+                        String y_AP1 = "8.00";
+
+                        String x_AP2 = "2.00";
+                        String y_AP2 = "2.00";
+
+                        String x_AP3 = "8.00";
+                        String y_AP3 = "2.00";
+
+                        String x_AP4 = "8.00";
+                        String y_AP4 = "8.00";
+
+                        String x_AP5 = "5.00";
+                        String y_AP5 = "5.00";
+
                         switch (nAP1) {
                             case "AP_1": {
-                                String x1 = "2.00";
-                                String y1 = "8.00";
-                                txtWifi1X.setText(x1);
-                                txtWifi1Y.setText(y1);
+                                txtWifi1X.setText(x_AP1);
+                                txtWifi1Y.setText(y_AP1);
                                 break;
                             }
                             case "AP_2": {
-                                String x1 = "2.00";
-                                String y1 = "2.00";
-                                txtWifi1X.setText(x1);
-                                txtWifi1Y.setText(y1);
+                                txtWifi1X.setText(x_AP2);
+                                txtWifi1Y.setText(y_AP2);
                                 break;
                             }
                             case "AP_3": {
-                                String x1 = "8.00";
-                                String y1 = "2.00";
-                                txtWifi1X.setText(x1);
-                                txtWifi1Y.setText(y1);
+                                txtWifi1X.setText(x_AP3);
+                                txtWifi1Y.setText(y_AP3);
                                 break;
                             }
                             case "AP_4": {
-                                String x1 = "8.00";
-                                String y1 = "8.00";
-                                txtWifi1X.setText(x1);
-                                txtWifi1Y.setText(y1);
+                                txtWifi1X.setText(x_AP4);
+                                txtWifi1Y.setText(y_AP4);
                                 break;
                             }
                             case "AP_5": {
-                                String x1 = "5.00";
-                                String y1 = "5.00";
-                                txtWifi1X.setText(x1);
-                                txtWifi1Y.setText(y1);
+                                txtWifi1X.setText(x_AP5);
+                                txtWifi1Y.setText(y_AP5);
                                 break;
                             }
                             default:
@@ -237,38 +250,28 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (nAP2) {
                             case "AP_1": {
-                                String x2 = "2.00";
-                                String y2 = "8.00";
-                                txtWifi2X.setText(x2);
-                                txtWifi2Y.setText(y2);
+                                txtWifi2X.setText(x_AP1);
+                                txtWifi2Y.setText(y_AP1);
                                 break;
                             }
                             case "AP_2": {
-                                String x2 = "2.00";
-                                String y2 = "2.00";
-                                txtWifi2X.setText(x2);
-                                txtWifi2Y.setText(y2);
+                                txtWifi2X.setText(x_AP2);
+                                txtWifi2Y.setText(y_AP2);
                                 break;
                             }
                             case "AP_3": {
-                                String x2 = "8.00";
-                                String y2 = "2.00";
-                                txtWifi2X.setText(x2);
-                                txtWifi2Y.setText(y2);
+                                txtWifi2X.setText(x_AP3);
+                                txtWifi2Y.setText(y_AP3);
                                 break;
                             }
                             case "AP_4": {
-                                String x2 = "8.00";
-                                String y2 = "8.00";
-                                txtWifi2X.setText(x2);
-                                txtWifi2Y.setText(y2);
+                                txtWifi2X.setText(x_AP4);
+                                txtWifi2Y.setText(y_AP4);
                                 break;
                             }
                             case "AP_5": {
-                                String x2 = "5.00";
-                                String y2 = "5.00";
-                                txtWifi2X.setText(x2);
-                                txtWifi2Y.setText(y2);
+                                txtWifi2X.setText(x_AP5);
+                                txtWifi2Y.setText(y_AP5);
                                 break;
                             }
                             default:
@@ -278,38 +281,28 @@ public class MainActivity extends AppCompatActivity {
 
                         switch (nAP3) {
                             case "AP_1": {
-                                String x3 = "2.00";
-                                String y3 = "8.00";
-                                txtWifi3X.setText(x3);
-                                txtWifi3Y.setText(y3);
+                                txtWifi3X.setText(x_AP1);
+                                txtWifi3Y.setText(y_AP1);
                                 break;
                             }
                             case "AP_2": {
-                                String x3 = "2.00";
-                                String y3 = "2.00";
-                                txtWifi3X.setText(x3);
-                                txtWifi3Y.setText(y3);
+                                txtWifi3X.setText(x_AP2);
+                                txtWifi3Y.setText(y_AP2);
                                 break;
                             }
                             case "AP_3": {
-                                String x3 = "8.00";
-                                String y3 = "2.00";
-                                txtWifi3X.setText(x3);
-                                txtWifi3Y.setText(y3);
+                                txtWifi3X.setText(x_AP3);
+                                txtWifi3Y.setText(y_AP3);
                                 break;
                             }
                             case "AP_4": {
-                                String x3 = "8.00";
-                                String y3 = "8.00";
-                                txtWifi3X.setText(x3);
-                                txtWifi3Y.setText(y3);
+                                txtWifi3X.setText(x_AP4);
+                                txtWifi3Y.setText(y_AP4);
                                 break;
                             }
                             case "AP_5": {
-                                String x3 = "5.00";
-                                String y3 = "5.00";
-                                txtWifi3X.setText(x3);
-                                txtWifi3Y.setText(y3);
+                                txtWifi3X.setText(x_AP5);
+                                txtWifi3Y.setText(y_AP5);
                                 break;
                             }
                             default:
