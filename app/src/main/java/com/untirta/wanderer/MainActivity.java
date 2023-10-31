@@ -33,7 +33,10 @@ import com.untirta.wanderer.trilateration.TrilaterationFunction;
 import org.apache.commons.math3.fitting.leastsquares.LeastSquaresOptimizer;
 import org.apache.commons.math3.fitting.leastsquares.LevenbergMarquardtOptimizer;
 
+import java.text.CollationElementIterator;
+import java.text.Collator;
 import java.text.DecimalFormat;
+import java.text.RuleBasedCollator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -52,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
             txtWifi3Y,
             txtWifi1R,
             txtWifi2R,
-            txtWifi3R;
+            txtWifi3R,
+            tv_da, tv_db, tv_dc;
     private ArrayAdapter adpStrength;
     private List<ScanResult> results;
     private ArrayList<String> alStrength = new ArrayList<>();
@@ -115,6 +119,10 @@ public class MainActivity extends AppCompatActivity {
         txtWifiName2 = findViewById(R.id.txtWifiName2);
         txtWifiName3 = findViewById(R.id.txtWifiName3);
 
+        tv_da = findViewById(R.id.tv_da);
+        tv_db = findViewById(R.id.tv_db);
+        tv_dc = findViewById(R.id.tv_dc);
+
         mDistances = new double[3];
         mPositions = new double[3][2];
 
@@ -153,6 +161,25 @@ public class MainActivity extends AppCompatActivity {
         btnScan.setOnClickListener(view -> {
             lv.removeAllViewsInLayout();
             scanWifi();
+            txtWifi1R.setText(null);
+            txtWifiName1.setText(null);
+
+            txtWifi2R.setText(null);
+            txtWifiName2.setText(null);
+
+            txtWifi3R.setText(null);
+            txtWifiName3.setText(null);
+
+            txtWifi1X.setText(null);
+            txtWifi1Y.setText(null);
+
+            txtWifi2X.setText(null);
+            txtWifi2Y.setText(null);
+
+            txtWifi3X.setText(null);
+            txtWifi3Y.setText(null);
+
+
             Toast.makeText(MainActivity.this, "Scanning WiFi ... Please Wait 5 Second To Catch Distance", Toast.LENGTH_SHORT).show();
 
             int waktu_loading = 5000;
@@ -177,30 +204,8 @@ public class MainActivity extends AppCompatActivity {
                         String[] splitDistances3 = dc.split("-");
                         String s3 = splitDistances3[1];
                         String nAP3 = splitDistances3[2];
-                        //Toast.makeText(getApplicationContext(), s1+" "+s2+" "+s3, Toast.LENGTH_SHORT).show();
-                        txtWifi1R.setText(s1);
-                        txtWifi2R.setText(s2);
-                        txtWifi3R.setText(s3);
-                        txtWifiName1.setText(nAP1);
-                        txtWifiName2.setText(nAP2);
-                        txtWifiName3.setText(nAP3);
 
-/*                      //TEMPLETE 1 (langsung tempel dinding) :
-                        String x_AP1 = ;
-                        String y_AP1 = ;
 
-                        String x_AP2 = ;
-                        String y_AP2 = ;
-
-                        String x_AP3 = ;
-                        String y_AP3 = ;
-
-                        String x_AP4 = ;
-                        String y_AP4 = ;
-
-                        String x_AP4 = ;
-                        String y_AP5 = ;
-*/
                         //POSISI UTAMA
                         String x_AP1 = "2.00";
                         String y_AP1 = "8.00";
@@ -214,33 +219,54 @@ public class MainActivity extends AppCompatActivity {
                         String x_AP4 = "8.00";
                         String y_AP4 = "8.00";
 
-                        String x_AP5 = "5.00";
+                        String x_AP5 = "3.00";
                         String y_AP5 = "5.00";
+
+                        String x_AP6 = "7.00";
+                        String y_AP6 = "5.00";
+
 
                         switch (nAP1) {
                             case "AP_1": {
                                 txtWifi1X.setText(x_AP1);
                                 txtWifi1Y.setText(y_AP1);
+                                txtWifi1R.setText(s1);
+                                txtWifiName1.setText(nAP1);
                                 break;
                             }
                             case "AP_2": {
                                 txtWifi1X.setText(x_AP2);
                                 txtWifi1Y.setText(y_AP2);
+                                txtWifi1R.setText(s1);
+                                txtWifiName1.setText(nAP1);
                                 break;
                             }
                             case "AP_3": {
                                 txtWifi1X.setText(x_AP3);
                                 txtWifi1Y.setText(y_AP3);
+                                txtWifi1R.setText(s1);
+                                txtWifiName1.setText(nAP1);
                                 break;
                             }
                             case "AP_4": {
                                 txtWifi1X.setText(x_AP4);
                                 txtWifi1Y.setText(y_AP4);
+                                txtWifi1R.setText(s1);
+                                txtWifiName1.setText(nAP1);
                                 break;
                             }
                             case "AP_5": {
                                 txtWifi1X.setText(x_AP5);
                                 txtWifi1Y.setText(y_AP5);
+                                txtWifi1R.setText(s1);
+                                txtWifiName1.setText(nAP1);
+                                break;
+                            }
+                            case "AP_6": {
+                                txtWifi1X.setText(x_AP6);
+                                txtWifi1Y.setText(y_AP6);
+                                txtWifi1R.setText(s1);
+                                txtWifiName1.setText(nAP1);
                                 break;
                             }
                             default:
@@ -252,26 +278,43 @@ public class MainActivity extends AppCompatActivity {
                             case "AP_1": {
                                 txtWifi2X.setText(x_AP1);
                                 txtWifi2Y.setText(y_AP1);
+                                txtWifi2R.setText(s2);
+                                txtWifiName2.setText(nAP2);
                                 break;
                             }
                             case "AP_2": {
                                 txtWifi2X.setText(x_AP2);
                                 txtWifi2Y.setText(y_AP2);
+                                txtWifi2R.setText(s2);
+                                txtWifiName2.setText(nAP2);
                                 break;
                             }
                             case "AP_3": {
                                 txtWifi2X.setText(x_AP3);
                                 txtWifi2Y.setText(y_AP3);
+                                txtWifi2R.setText(s2);
+                                txtWifiName2.setText(nAP2);
                                 break;
                             }
                             case "AP_4": {
                                 txtWifi2X.setText(x_AP4);
                                 txtWifi2Y.setText(y_AP4);
+                                txtWifi2R.setText(s2);
+                                txtWifiName2.setText(nAP2);
                                 break;
                             }
                             case "AP_5": {
                                 txtWifi2X.setText(x_AP5);
                                 txtWifi2Y.setText(y_AP5);
+                                txtWifi2R.setText(s2);
+                                txtWifiName2.setText(nAP2);
+                                break;
+                            }
+                            case "AP_6": {
+                                txtWifi2X.setText(x_AP6);
+                                txtWifi2Y.setText(y_AP6);
+                                txtWifi2R.setText(s2);
+                                txtWifiName2.setText(nAP2);
                                 break;
                             }
                             default:
@@ -283,32 +326,58 @@ public class MainActivity extends AppCompatActivity {
                             case "AP_1": {
                                 txtWifi3X.setText(x_AP1);
                                 txtWifi3Y.setText(y_AP1);
+                                txtWifi3R.setText(s3);
+                                txtWifiName3.setText(nAP3);
                                 break;
                             }
                             case "AP_2": {
                                 txtWifi3X.setText(x_AP2);
                                 txtWifi3Y.setText(y_AP2);
+                                txtWifi3R.setText(s3);
+                                txtWifiName3.setText(nAP3);
                                 break;
                             }
                             case "AP_3": {
                                 txtWifi3X.setText(x_AP3);
                                 txtWifi3Y.setText(y_AP3);
+                                txtWifi3R.setText(s3);
+                                txtWifiName3.setText(nAP3);
                                 break;
                             }
                             case "AP_4": {
                                 txtWifi3X.setText(x_AP4);
                                 txtWifi3Y.setText(y_AP4);
+                                txtWifi3R.setText(s3);
+                                txtWifiName3.setText(nAP3);
                                 break;
                             }
                             case "AP_5": {
                                 txtWifi3X.setText(x_AP5);
                                 txtWifi3Y.setText(y_AP5);
+                                txtWifi3R.setText(s3);
+                                txtWifiName3.setText(nAP3);
+                                break;
+                            }
+                            case "AP_6": {
+                                txtWifi3X.setText(x_AP6);
+                                txtWifi3Y.setText(y_AP6);
+                                txtWifi3R.setText(s3);
+                                txtWifiName3.setText(nAP3);
                                 break;
                             }
                             default:
                                 Toast.makeText(MainActivity.this, "Null", Toast.LENGTH_SHORT).show();
                                 break;
                         }
+
+                       // txtWifi1R.setText(s1);
+                       // txtWifiName1.setText(nAP1);
+
+                        //txtWifi2R.setText(s2);
+                       // txtWifiName2.setText(nAP2);
+
+                       // txtWifi3R.setText(s3);
+                      //  txtWifiName3.setText(nAP3);
 
                     }
                 }
@@ -365,6 +434,8 @@ public class MainActivity extends AppCompatActivity {
                 String ssid = results.get(i).SSID ;
                 alStrength.add(level+"-"+st+"-"+ssid);
                 Collections.sort(alStrength, Collections.reverseOrder());
+                alStrength.removeIf(n->(n.charAt(10)=='K'));
+                alStrength.removeIf(n->(n.charAt(10)=='U'));
                 adpStrength.notifyDataSetChanged();
 
             }
@@ -567,6 +638,7 @@ public class MainActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
+
 
     //========end section =====
 
