@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(MainActivity.this, "Scanning WiFi ... Please Wait 5 Second To Catch Distance", Toast.LENGTH_SHORT).show();
 
-            int waktu_loading = 5000;
+            int waktu_loading = 4000;
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -436,6 +436,8 @@ public class MainActivity extends AppCompatActivity {
                 Collections.sort(alStrength, Collections.reverseOrder());
                 alStrength.removeIf(n->(n.charAt(10)=='K'));
                 alStrength.removeIf(n->(n.charAt(10)=='U'));
+                alStrength.removeIf(n->(n.charAt(11)=='U'));
+                alStrength.removeIf(n->(n.charAt(12)=='U'));
                 adpStrength.notifyDataSetChanged();
 
             }
