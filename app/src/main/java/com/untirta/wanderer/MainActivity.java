@@ -47,16 +47,14 @@ public class MainActivity extends AppCompatActivity {
     TextView txtWifiName1,
             txtWifiName2,
             txtWifiName3,
-            txtWifi1X,
-            txtWifi2X,
-            txtWifi3X,
-            txtWifi1Y,
-            txtWifi2Y,
-            txtWifi3Y,
-            txtWifi1R,
-            txtWifi2R,
-            txtWifi3R,
-            tv_da, tv_db, tv_dc;
+            txtWifiName4,
+            txtWifiName5,
+            txtWifiName6,
+            txtWifi1X, txtWifi2X, txtWifi3X, txtWifi4X, txtWifi5X, txtWifi6X,
+            txtWifi1Y, txtWifi2Y, txtWifi3Y, txtWifi4Y, txtWifi5Y, txtWifi6Y,
+            txtWifi1R, txtWifi2R, txtWifi3R, txtWifi4R, txtWifi5R, txtWifi6R,
+            tv_da, tv_db, tv_dc, tv_dd, tv_de, tv_df;
+
     private ArrayAdapter adpStrength;
     private List<ScanResult> results;
     private ArrayList<String> alStrength = new ArrayList<>();
@@ -106,25 +104,40 @@ public class MainActivity extends AppCompatActivity {
         txtWifi1X = findViewById(R.id.txtWifi1X);
         txtWifi2X = findViewById(R.id.txtWifi2X);
         txtWifi3X = findViewById(R.id.txtWifi3X);
+        txtWifi4X = findViewById(R.id.txtWifi4X);
+        //txtWifi5X = findViewById(R.id.txtWifi5X);
+       // txtWifi6X = findViewById(R.id.txtWifi6X);
 
         txtWifi1Y = findViewById(R.id.txtWifi1Y);
         txtWifi2Y = findViewById(R.id.txtWifi2Y);
         txtWifi3Y = findViewById(R.id.txtWifi3Y);
+        txtWifi4Y = findViewById(R.id.txtWifi4Y);
+        //txtWifi5Y = findViewById(R.id.txtWifi5Y);
+       // txtWifi6Y = findViewById(R.id.txtWifi6Y);
 
         txtWifi1R = findViewById(R.id.txtWifi1R);
         txtWifi2R = findViewById(R.id.txtWifi2R);
         txtWifi3R = findViewById(R.id.txtWifi3R);
+        txtWifi4R = findViewById(R.id.txtWifi4R);
+        //txtWifi5R = findViewById(R.id.txtWifi5R);
+        //txtWifi6R = findViewById(R.id.txtWifi6R);
 
         txtWifiName1 = findViewById(R.id.txtWifiName1);
         txtWifiName2 = findViewById(R.id.txtWifiName2);
         txtWifiName3 = findViewById(R.id.txtWifiName3);
+        txtWifiName4 = findViewById(R.id.txtWifiName4);
+       // txtWifiName5 = findViewById(R.id.txtWifiName5);
+        //txtWifiName6 = findViewById(R.id.txtWifiName6);
+
+        mDistances = new double[4];
+        mPositions = new double[4][2];
 
         tv_da = findViewById(R.id.tv_da);
         tv_db = findViewById(R.id.tv_db);
         tv_dc = findViewById(R.id.tv_dc);
-
-        mDistances = new double[3];
-        mPositions = new double[3][2];
+        tv_dd = findViewById(R.id.tv_dd);
+       // tv_de = findViewById(R.id.tv_de);
+       // tv_df = findViewById(R.id.tv_df);
 
 
         GraphView scatterPlot = (GraphView) findViewById(R.id.scatterPlot);
@@ -170,6 +183,9 @@ public class MainActivity extends AppCompatActivity {
             txtWifi3R.setText(null);
             txtWifiName3.setText(null);
 
+            txtWifi4R.setText(null);
+            txtWifiName4.setText(null);
+
             txtWifi1X.setText(null);
             txtWifi1Y.setText(null);
 
@@ -178,6 +194,10 @@ public class MainActivity extends AppCompatActivity {
 
             txtWifi3X.setText(null);
             txtWifi3Y.setText(null);
+
+            txtWifi4X.setText(null);
+            txtWifi4Y.setText(null);
+
 
 
             Toast.makeText(MainActivity.this, "Scanning WiFi ... Please Wait 5 Second To Catch Distance", Toast.LENGTH_SHORT).show();
@@ -195,6 +215,9 @@ public class MainActivity extends AppCompatActivity {
                         String da = lv.getItemAtPosition(0).toString();
                         String db = lv.getItemAtPosition(1).toString();
                         String dc = lv.getItemAtPosition(2).toString();
+                        String dd = lv.getItemAtPosition(3).toString();
+                       // String de = lv.getItemAtPosition(4).toString();
+                        //String df = lv.getItemAtPosition(5).toString();
                         String[] splitDistances1 = da.split("-");
                         String s1 = splitDistances1[1];
                         String nAP1 = splitDistances1[2];
@@ -204,7 +227,16 @@ public class MainActivity extends AppCompatActivity {
                         String[] splitDistances3 = dc.split("-");
                         String s3 = splitDistances3[1];
                         String nAP3 = splitDistances3[2];
-
+                        String[] splitDistances4 = dd.split("-");
+                        String s4 = splitDistances4[1];
+                        String nAP4 = splitDistances4[2];
+                       // String[] splitDistances5 = de.split("-");
+                       // String s5 = splitDistances5[1];
+                       // String nAP5 = splitDistances5[2];
+                       /* String[] splitDistances6 = df.split("-");
+                        String s6 = splitDistances6[1];
+                        String nAP6 = splitDistances6[2];
+                        */
 
                         //POSISI UTAMA
                         String x_AP1 = "2.00";
@@ -370,14 +402,151 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         }
 
-                       // txtWifi1R.setText(s1);
-                       // txtWifiName1.setText(nAP1);
+                        switch (nAP4) {
+                            case "AP_1": {
+                                txtWifi4X.setText(x_AP1);
+                                txtWifi4Y.setText(y_AP1);
+                                txtWifi4R.setText(s4);
+                                txtWifiName4.setText(nAP4);
+                                break;
+                            }
+                            case "AP_2": {
+                                txtWifi4X.setText(x_AP2);
+                                txtWifi4Y.setText(y_AP2);
+                                txtWifi4R.setText(s4);
+                                txtWifiName4.setText(nAP4);
+                                break;
+                            }
+                            case "AP_3": {
+                                txtWifi4X.setText(x_AP3);
+                                txtWifi4Y.setText(y_AP3);
+                                txtWifi4R.setText(s4);
+                                txtWifiName4.setText(nAP4);
+                                break;
+                            }
+                            case "AP_4": {
+                                txtWifi4X.setText(x_AP4);
+                                txtWifi4Y.setText(y_AP4);
+                                txtWifi4R.setText(s4);
+                                txtWifiName4.setText(nAP4);
+                                break;
+                            }
+                            case "AP_5": {
+                                txtWifi4X.setText(x_AP5);
+                                txtWifi4Y.setText(y_AP5);
+                                txtWifi4R.setText(s4);
+                                txtWifiName4.setText(nAP4);
+                                break;
+                            }
+                            case "AP_6": {
+                                txtWifi4X.setText(x_AP6);
+                                txtWifi4Y.setText(y_AP6);
+                                txtWifi4R.setText(s4);
+                                txtWifiName4.setText(nAP4);
+                                break;
+                            }
+                            default:
+                                Toast.makeText(MainActivity.this, "Null", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
 
-                        //txtWifi2R.setText(s2);
-                       // txtWifiName2.setText(nAP2);
+                      /*  switch (nAP5) {
+                            case "AP_1": {
+                                txtWifi5X.setText(x_AP1);
+                                txtWifi5Y.setText(y_AP1);
+                                txtWifi5R.setText(s5);
+                                txtWifiName5.setText(nAP5);
+                                break;
+                            }
+                            case "AP_2": {
+                                txtWifi5X.setText(x_AP2);
+                                txtWifi5Y.setText(y_AP2);
+                                txtWifi5R.setText(s5);
+                                txtWifiName5.setText(nAP5);
+                                break;
+                            }
+                            case "AP_3": {
+                                txtWifi5X.setText(x_AP3);
+                                txtWifi5Y.setText(y_AP3);
+                                txtWifi5R.setText(s5);
+                                txtWifiName5.setText(nAP5);
+                                break;
+                            }
+                            case "AP_4": {
+                                txtWifi5X.setText(x_AP4);
+                                txtWifi5Y.setText(y_AP4);
+                                txtWifi5R.setText(s5);
+                                txtWifiName5.setText(nAP5);
+                                break;
+                            }
+                            case "AP_5": {
+                                txtWifi5X.setText(x_AP5);
+                                txtWifi5Y.setText(y_AP5);
+                                txtWifi5R.setText(s5);
+                                txtWifiName5.setText(nAP5);
+                                break;
+                            }
+                            case "AP_6": {
+                                txtWifi5X.setText(x_AP6);
+                                txtWifi5Y.setText(y_AP6);
+                                txtWifi5R.setText(s5);
+                                txtWifiName5.setText(nAP5);
+                                break;
+                            }
+                            default:
+                                Toast.makeText(MainActivity.this, "Null", Toast.LENGTH_SHORT).show();
+                                break;
+                        }
 
-                       // txtWifi3R.setText(s3);
-                      //  txtWifiName3.setText(nAP3);
+                      /*  switch (nAP6) {
+                            case "AP_1": {
+                                txtWifi6X.setText(x_AP1);
+                                txtWifi6Y.setText(y_AP1);
+                                txtWifi6R.setText(s6);
+                                txtWifiName6.setText(nAP6);
+                                break;
+                            }
+                            case "AP_2": {
+                                txtWifi6X.setText(x_AP2);
+                                txtWifi6Y.setText(y_AP2);
+                                txtWifi6R.setText(s6);
+                                txtWifiName6.setText(nAP6);
+                                break;
+                            }
+                            case "AP_3": {
+                                txtWifi6X.setText(x_AP3);
+                                txtWifi6Y.setText(y_AP3);
+                                txtWifi6R.setText(s6);
+                                txtWifiName6.setText(nAP6);
+                                break;
+                            }
+                            case "AP_4": {
+                                txtWifi6X.setText(x_AP4);
+                                txtWifi6Y.setText(y_AP4);
+                                txtWifi6R.setText(s6);
+                                txtWifiName6.setText(nAP6);
+                                break;
+                            }
+                            case "AP_5": {
+                                txtWifi6X.setText(x_AP5);
+                                txtWifi6Y.setText(y_AP5);
+                                txtWifi6R.setText(s6);
+                                txtWifiName6.setText(nAP6);
+                                break;
+                            }
+                            case "AP_6": {
+                                txtWifi6X.setText(x_AP6);
+                                txtWifi6Y.setText(y_AP6);
+                                txtWifi6R.setText(s6);
+                                txtWifiName6.setText(nAP6);
+                                break;
+                            }
+                            default:
+                                Toast.makeText(MainActivity.this, "Null", Toast.LENGTH_SHORT).show();
+                                break;
+                        } */
+
+
 
                     }
                 }
@@ -388,16 +557,7 @@ public class MainActivity extends AppCompatActivity {
         plotMap();
 
 
-/*
-        btnTri.setOnClickListener(v ->{
-            triliteration();
-        });
-
- */
-
-        btnNLS.setOnClickListener(v -> {
-            nonlinearLSQ();
-        });
+        btnNLS.setOnClickListener(v -> nonlinearLSQ());
 
         adpStrength = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alStrength);
         lv.setAdapter(adpStrength);
@@ -457,25 +617,47 @@ public class MainActivity extends AppCompatActivity {
                 txtWifi2Y.getText().toString().trim().isEmpty() ||
                 txtWifi3X.getText().toString().trim().isEmpty() ||
                 txtWifi3Y.getText().toString().trim().isEmpty() ||
+                txtWifi4X.getText().toString().trim().isEmpty() ||
+                txtWifi4Y.getText().toString().trim().isEmpty() ||
+                /*txtWifi5X.getText().toString().trim().isEmpty() ||
+                txtWifi5Y.getText().toString().trim().isEmpty() ||
+                /*txtWifi6X.getText().toString().trim().isEmpty() ||
+                txtWifi6Y.getText().toString().trim().isEmpty() ||*/
+                txtWifi1R.getText().toString().trim().isEmpty() ||
+                txtWifi2R.getText().toString().trim().isEmpty() ||
                 txtWifi3R.getText().toString().trim().isEmpty() ||
-                txtWifi3R.getText().toString().trim().isEmpty() ||
-                txtWifi3R.getText().toString().trim().isEmpty()){
+                txtWifi4R.getText().toString().trim().isEmpty()
+                /*txtWifi5R.getText().toString().trim().isEmpty()
+                /*txtWifi6R.getText().toString().trim().isEmpty()*/){
 
-            Toast.makeText(getApplicationContext(), "Isi Kolom dengan Benar !", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "You Must Scan Wifi To Begin", Toast.LENGTH_LONG).show();
         }
         else{
 
             mPositions[0][0] = Double.parseDouble(txtWifi1X.getText().toString());
             mPositions[0][1] = Double.parseDouble(txtWifi1Y.getText().toString());
-            mPositions[1][0] = Double.parseDouble(txtWifi2X.getText().toString());
 
+            mPositions[1][0] = Double.parseDouble(txtWifi2X.getText().toString());
             mPositions[1][1] = Double.parseDouble(txtWifi2Y.getText().toString());
+
             mPositions[2][0] = Double.parseDouble(txtWifi3X.getText().toString());
             mPositions[2][1] = Double.parseDouble(txtWifi3Y.getText().toString());
+
+            mPositions[3][0] = Double.parseDouble(txtWifi4X.getText().toString());
+            mPositions[3][1] = Double.parseDouble(txtWifi4Y.getText().toString());
+
+            //mPositions[4][0] = Double.parseDouble(txtWifi5X.getText().toString());
+           // mPositions[4][1] = Double.parseDouble(txtWifi5Y.getText().toString());
+
+            /*mPositions[5][0] = Double.parseDouble(txtWifi6X.getText().toString());
+            mPositions[5][1] = Double.parseDouble(txtWifi6Y.getText().toString());*/
 
             mDistances[0] = Double.parseDouble(txtWifi1R.getText().toString());
             mDistances[1] = Double.parseDouble(txtWifi2R.getText().toString());
             mDistances[2] = Double.parseDouble(txtWifi3R.getText().toString());
+            mDistances[3] = Double.parseDouble(txtWifi4R.getText().toString());
+           // mDistances[4] = Double.parseDouble(txtWifi5R.getText().toString());
+           /* mDistances[5] = Double.parseDouble(txtWifi6R.getText().toString());*/
 
 
             double[][] positions = mPositions;
@@ -487,7 +669,7 @@ public class MainActivity extends AppCompatActivity {
 
             // the answer
             double[] centroid = optimum.getPoint().toArray();
-            DecimalFormat df = new DecimalFormat("#.##");
+            DecimalFormat df = new DecimalFormat("#.###");
 
 
 
@@ -510,21 +692,28 @@ public class MainActivity extends AppCompatActivity {
     private void plotMap(){
         //declare the xySeries Object
         xySeries = new PointsGraphSeries<>();
-        btnAddPt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        btnAddPt.setOnClickListener(view -> {
+
+            if (tv_resX.getText().toString().equals("X = 0.000 m") || tv_resY.getText().toString().equals("Y = 0.000 m")) {
+                Toast.makeText(getApplicationContext(), "Distance Data Not Found", Toast.LENGTH_LONG).show();
+
+            }
+            else {
+
                 if(!mX.getText().toString().equals("") && !mY.getText().toString().equals("") ){
                     //dummy text
                     double x = Double.parseDouble(mX.getText().toString()); //masukan x disini
                     double y = Double.parseDouble(mY.getText().toString()); //masukan y disini
                     Log.d(TAG, "onClick: Adding a new point. (x,y): (" + x + "," + y + ")" );
-                    xyValueArray.add(new com.untirta.wanderer.XYValue(x,y));
+                    xyValueArray.add(new XYValue(x,y));
                     plotMap();
 
                 }else {
                     toastMessage("You must fill out both fields!");
                 }
+
             }
+
         });
 
 
